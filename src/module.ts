@@ -1,10 +1,6 @@
 import { PanelPlugin } from '@grafana/data';
 import { CustomPanelsTelemetryAnalysis, CustomPanelTelemetryAnalysisProps } from './CustomPanelsTelemetryAnalysis';
-
-export enum CustomPanelTypes{
-  Gauge = 'gauge_type',
-  Map = 'map_type'
-}
+import { CustomPanelTypes } from './types';
 
 export const plugin = new PanelPlugin<CustomPanelTelemetryAnalysisProps>(CustomPanelsTelemetryAnalysis).setPanelOptions(builder => {
   return builder.addRadio({

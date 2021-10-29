@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import { PanelProps, DataHoverEvent, FieldType, GrafanaTheme } from '@grafana/data';
 import { Gauge, getTheme } from '@grafana/ui';
-import { CustomPanelTypes } from './module';
+import { CustomPanelTypes } from "./types";
 
 // Custom props for this panel
 export interface CustomPanelTelemetryAnalysisProps {
