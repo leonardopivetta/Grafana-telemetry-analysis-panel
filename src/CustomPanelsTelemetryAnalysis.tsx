@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import { PanelProps, DataHoverEvent, FieldType, GrafanaTheme } from '@grafana/data';
-import { Gauge, getTheme } from '@grafana/ui';
+import { Gauge, getTheme, HorizontalGroup } from '@grafana/ui';
 import { CustomPanelTypes } from "./types";
 
 // Custom props for this panel
@@ -30,7 +30,15 @@ export class CustomPanelsTelemetryAnalysis extends PureComponent<PanelProps<Cust
     this.props.eventBus.getStream(DataHoverEvent).subscribe((data) => {
       this.setState({ position: (data.payload.rowIndex ?? 0) / (data.payload.data?.length ?? 1000) });
     });
+
+    // Forced updates on option/configuration change
+    this.props.onOptionsChange.bind(()=>{this.forceUpdate();})
+    this.props.onFieldConfigChange.bind(()=>{this.forceUpdate()});
   }
+
+  shouldComponentUpdate(nextProps: PanelProps<CustomPanelTelemetryAnalysisProps>, nextState: CustomPanelTelemetryAnalysisState, _: any){
+    return nextProps !== this.props || nextState !== this.state
+  }  
 
   /// Builds the Gauge panel
   private buildGauge() {
@@ -66,7 +74,13 @@ export class CustomPanelsTelemetryAnalysis extends PureComponent<PanelProps<Cust
       case CustomPanelTypes.Map:
         return (
           <div>
-            <p>map</p>
+            <HorizontalGroup>
+              {
+                this.props.data.series.map((item)=>{
+                  return (<div>ciao</div>);
+                })
+              }
+            </HorizontalGroup>
           </div>
         )
     }
