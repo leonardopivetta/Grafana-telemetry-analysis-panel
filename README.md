@@ -23,3 +23,4 @@ A multipurpose telemetry analysis panel interfacing with grafana data-hover func
 
 - ⚠️ Gauge panel
 - ❌ Map
+- ❌ Link to other dashboards
