@@ -10,7 +10,8 @@ export const plugin = new PanelPlugin<CustomPanelTelemetryAnalysisProps>(CustomP
     settings: {
       options: [
         {value: CustomPanelTypes.Gauge, label: 'Gauge'},
-        {value: CustomPanelTypes.Map, label: 'Map'}
+        {value: CustomPanelTypes.Map, label: 'Map'},
+        {value: CustomPanelTypes.SteeringWheel, label: 'Steering Wheel'}
       ]
     }
   });
