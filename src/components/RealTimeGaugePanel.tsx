@@ -4,18 +4,18 @@ import { Gauge, getTheme} from '@grafana/ui';
 import { getNearestTime } from 'functions';
 
 export interface RealTimeGaugePanelProps {
-    props: PanelProps,
+    props: PanelProps, // Stock panel props for the eventbus, data etc.
 }
 
- 
+/// Stock Gauge panel but the data refears to the crosshover pointer
 export const RealTimeGaugePanel: React.FC<RealTimeGaugePanelProps> = ({props}) =>{
     const [time, setTime] = useState(0);
     
     props.onOptionsChange.bind((_: any)=>{setTime(0)}) // Forcing update
     props.eventBus.getStream(DataHoverEvent).subscribe((data)=>{setTime(data.payload.point.time);}) // On mouse hover any time series gets the time and stores it in the time variable
 
-    const isHorizontal = props.height < props.width;
-    const seriesLength = props.data.series.length;
+    const isHorizontal = props.height < props.width;    // Checks if the current panel is in horizontal mode
+    const seriesLength = props.data.series.length;      // Count of the series to display
 
     return (
         <div style={{ display: 'flex', flexDirection: isHorizontal ? 'row' : 'column'}}>
@@ -24,24 +24,23 @@ export const RealTimeGaugePanel: React.FC<RealTimeGaugePanelProps> = ({props}) =
                     //Data constants
                     const view = new DataFrameView(serie);
                     const nearestIndex = getNearestTime(view, time);
-                    const value: number = view.get(nearestIndex)[1];
-                    const graphicalValue: DisplayValue = {
+                    const value: number = view.get(nearestIndex)[1];    // [1] means the value, [0] is the time
+                    const graphicalValue: DisplayValue = {      // Refear to DisplayValue interface
                         text: value.toFixed(2),
                         numeric: value,
-                        color: 'hsl('+Math.round(value)*240/255 + ', 100%, 50%)',
-                        description: 'aaaa'
+                        color: 'hsl('+Math.round(value)*240/255 + ', 100%, 50%)',   // Gradient using the hsl encoding
                     };
 
 
                     //Graphical constants
-                    const height = isHorizontal ? props.height : props.height / seriesLength;
-                    const width = isHorizontal ? props.width / seriesLength : props.width; 
+                    const height = isHorizontal ? props.height : props.height / seriesLength;   // Adapts the heigth to the number of series to display
+                    const width = isHorizontal ? props.width / seriesLength : props.width;      // Adapts the width to the number of series to display
                     const theme = getTheme();
-
 
                     return (
                         <Gauge 
-                            height={height} width={width} theme={theme}
+                            height={height} width={width} 
+                            theme={theme}
                             value = {graphicalValue}/>
                     );
                 })}

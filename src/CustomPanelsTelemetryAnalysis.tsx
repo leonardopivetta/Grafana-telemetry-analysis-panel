@@ -13,6 +13,8 @@ export interface CustomPanelTelemetryAnalysisProps {
 // Test component for hover data analysis
 export class CustomPanelsTelemetryAnalysis extends PureComponent<PanelProps<CustomPanelTelemetryAnalysisProps>>  {
 
+  // TODO: maybe this can be converted to a FunctionalComponent, not necessary for the current situation
+
   componentDidMount() {
     // Forced updates on option/configuration change
     this.props.onOptionsChange.bind(() => { this.setState({}); })
@@ -22,7 +24,6 @@ export class CustomPanelsTelemetryAnalysis extends PureComponent<PanelProps<Cust
   shouldComponentUpdate(nextProps: PanelProps<CustomPanelTelemetryAnalysisProps>) {
     return nextProps !== this.props || nextProps.options.selector !== this.props.options.selector
   }
-
 
   render() {
     switch (this.props.options.selector) {
