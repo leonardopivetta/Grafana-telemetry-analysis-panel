@@ -17,7 +17,7 @@ A multipurpose telemetry analysis panel interfacing with grafana data-hover func
 
 <pre>
 ✅: Done
-⚠️: Inconplete
+⚠️: Incomplete
 ❌: Not implemented
 </pre>
 
