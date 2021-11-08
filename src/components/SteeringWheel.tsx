@@ -20,7 +20,7 @@ export const SteeringWheel: React.FC<SteeringWheelProps> = ({ props }) => {
   const serie = props.data.series[0];
   const view = new DataFrameView(serie);
 
-  var degree: number = 0;
+  var degree = 0;
   if (props.options.realtime) {
     // If the real time option is set it gets the last value
     degree = view.get(view.length - 1)[1];

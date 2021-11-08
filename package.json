@@ -18,7 +18,7 @@
     "@grafana/ui": "latest",
     "@types/lodash": "^4.14.176",
     "emotion": "10.0.27",
-    "lint": "^0.7.0",
+    "lint": "^1.1.2",
     "prettier": "2.4.1"
   },
   "engines": {

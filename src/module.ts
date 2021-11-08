@@ -5,10 +5,10 @@ import _ from 'lodash';
 
 export const plugin = new PanelPlugin<CustomPanelTelemetryAnalysisProps>(CustomPanelsTelemetryAnalysis).setPanelOptions(
   (builder) => {
-    var options: {
+    var options: Array<{
       value: CustomPanelTypes;
       label: string;
-    }[] = [];
+    }> = [];
 
     _.forIn(CustomPanelTypes, (key, value) => {
       options.push({
