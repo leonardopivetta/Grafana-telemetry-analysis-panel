@@ -24,5 +24,8 @@ export const plugin = new PanelPlugin<CustomPanelTelemetryAnalysisProps>(CustomP
     settings: {
       options: options
     }
+  }).addBooleanSwitch({
+    name: 'Real-time',
+    path: 'realtime',
   });
 });
