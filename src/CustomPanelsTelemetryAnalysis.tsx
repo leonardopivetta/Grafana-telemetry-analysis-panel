@@ -1,38 +1,44 @@
 import React, { PureComponent } from 'react';
 import { PanelProps } from '@grafana/data';
-import { CustomPanelTypes } from "./types";
+import { CustomPanelTypes } from './types';
 import { RealTimeGaugePanel } from 'components/RealTimeGaugePanel';
 import { SteeringWheel } from 'components/SteeringWheel';
 
 // Custom props for this panel
 export interface CustomPanelTelemetryAnalysisProps {
-  selector: CustomPanelTypes
+  selector: CustomPanelTypes;
 }
 
-
 // Test component for hover data analysis
-export class CustomPanelsTelemetryAnalysis extends PureComponent<PanelProps<CustomPanelTelemetryAnalysisProps>>  {
-
+export class CustomPanelsTelemetryAnalysis extends PureComponent<PanelProps<CustomPanelTelemetryAnalysisProps>> {
   // TODO: maybe this can be converted to a FunctionalComponent, not necessary for the current situation
 
   componentDidMount() {
     // Forced updates on option/configuration change
-    this.props.onOptionsChange.bind(() => { this.setState({}); })
-    this.props.onFieldConfigChange.bind(() => { this.setState({}) });
+    this.props.onOptionsChange.bind(() => {
+      this.setState({});
+    });
+    this.props.onFieldConfigChange.bind(() => {
+      this.setState({});
+    });
   }
 
   shouldComponentUpdate(nextProps: PanelProps<CustomPanelTelemetryAnalysisProps>) {
-    return nextProps !== this.props || nextProps.options.selector !== this.props.options.selector
+    return nextProps !== this.props || nextProps.options.selector !== this.props.options.selector;
   }
 
   render() {
     switch (this.props.options.selector) {
       case CustomPanelTypes.Gauge:
-        return <RealTimeGaugePanel props={this.props}/>;  // Returns the Gauge section
+        return <RealTimeGaugePanel props={this.props} />; // Returns the Gauge section
       case CustomPanelTypes.SteeringWheel:
-        return <SteeringWheel props={this.props}/>;       // Returns the Steering wheel section
+        return <SteeringWheel props={this.props} />; // Returns the Steering wheel section
       case CustomPanelTypes.Map:
-        return (<div><p>Map</p></div>);
+        return (
+          <div>
+            <p>Map</p>
+          </div>
+        );
     }
   }
 }
