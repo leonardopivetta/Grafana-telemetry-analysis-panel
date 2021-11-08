@@ -21,6 +21,7 @@ A multipurpose telemetry analysis panel interfacing with grafana data-hover func
 ❌: Not implemented
 </pre>
 
+- ✅ Steering wheel visualizer
 - ⚠️ Gauge panel
 - ❌ Map
 - ❌ Link to other dashboards
