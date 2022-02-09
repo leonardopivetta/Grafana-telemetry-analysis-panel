@@ -40,7 +40,7 @@ export const RealTimeGaugePanel: React.FC<RealTimeGaugePanelProps> = ({ props })
         const width = isHorizontal ? props.width / seriesLength : props.width; // Adapts the width to the number of series to display
         const theme = getTheme();
 
-        return (<Gauge height={height} width={width} theme={theme} value={graphicalValue} />);
+        return <Gauge height={height} width={width} theme={theme} value={graphicalValue} key={serie.name} />;
       })}
     </div>
   );
